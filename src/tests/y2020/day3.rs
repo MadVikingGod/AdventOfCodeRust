@@ -29,7 +29,7 @@ fn test_slope() {
     assert_eq!(slope.next().unwrap(), false);
     assert_eq!(slope.next().unwrap(), true);
 
-    let mut slope = test_map().slope(3, 1);
+    let slope = test_map().slope(3, 1);
     assert_eq!(slope.filter(|x| *x).count(),7)
 }
 
