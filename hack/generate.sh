@@ -19,7 +19,7 @@ mkdir -p $dirs
 
 ### Bins
 touch $bin_dir/instructions.txt
-echo >$bin_dir/main.rs <<EOF
+grep -E "use advent_of_code::y$year::day$day::read_input;" $bin_dir/main.rs -q || cat >$bin_dir/main.rs <<EOF
 use advent_of_code::y$year::day$day::read_input;
 
 fn main() {
@@ -30,15 +30,23 @@ EOF
 ### Tests
 grep -E "y$year" src/tests/mod.rs -q || echo "mod y$year;" >> src/tests/mod.rs
 grep -E "day$day" $test_dir/mod.rs -q || echo "mod day$day;" >> $test_dir/mod.rs
+grep -E "use crate::y$year::day$day;" $test_dir/day$day.rs -q || cat > $test_dir/day$day.rs <<EOF
+use crate::y$year::day$day;
+
+#[test]
+fn test_nothing()  -> Result<(),String> {
+    Ok(())
+}
+EOF
 
 ### Library
 # Manually add `pub mod y$year;` ath the start of a new year
 grep -E "y$year" src/lib.rs -q || echo "Need to add 'pub mod y$year;' to src/lib.rs"
 grep -E "day$day" src/y$year/mod.rs -q || echo "pub mod day$day;" >> src/y$year/mod.rs
 touch $lib_dir/input.txt
-echo >$lib_dir/mod.rs <<EOF
-pub fn read_input() -> Map {
+grep -E "pub fn read_input()" $lib_dir/mod.rs -q || cat >$lib_dir/mod.rs <<EOF
+pub fn read_input() -> Vec<&'static str> {
     let input = include_str!("input.txt");
-    Map::new(input)
+    input.lines().collect()
 }
 EOF
