@@ -8,3 +8,4 @@ edition = "2018"
 
 [dependencies]
 regex = "1"
+array2d = "0.2"

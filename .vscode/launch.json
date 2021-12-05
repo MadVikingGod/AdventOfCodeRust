@@ -7,6 +7,24 @@
         {
             "type": "lldb",
             "request": "launch",
+            "name": "Debug executable 'day4-2021'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day4-2021",
+                    "--package=advent_of_code"
+                ],
+                "filter": {
+                    "name": "day4-2021",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
             "name": "Debug unit tests in library 'advent_of_code'",
             "cargo": {
                 "args": [

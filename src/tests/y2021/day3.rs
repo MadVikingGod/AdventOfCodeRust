@@ -20,12 +20,12 @@ fn test_calculat_gama()  -> Result<(),String> {
     Ok(())
 }
 
-#[test]
-fn test_calculate_epsilon()  -> Result<(),String> {
-    let input ="10110";
-    assert_eq!(day3::calculate_epsilon(input.to_string()), "10110");
-    Ok(())
-}
+// #[test]
+// fn test_calculate_epsilon()  -> Result<(),String> {
+//     let input ="10110";
+//     assert_eq!(day3::calculate_epsilon(input.to_string()), "10110");
+//     Ok(())
+// }
 
 #[test]
 fn test_calculate_oxygen()  -> Result<(),String> {
