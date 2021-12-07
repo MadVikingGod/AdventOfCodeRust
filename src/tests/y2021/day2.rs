@@ -1,40 +1,82 @@
 #[test]
-fn test_instruction_parse()  -> Result<(),String> {
+fn test_instruction_parse() -> Result<(), String> {
     let input = "forward 2";
-    let got: crate::y2021::day2::Instruction = input.parse().unwrap(); 
-    assert_eq!(got, crate::y2021::day2::Instruction{
-        dir: crate::y2021::day2::Direction::Forward,
-        size: 2,
-    });
+    let got: crate::y2021::day2::Instruction = input.parse().unwrap();
+    assert_eq!(
+        got,
+        crate::y2021::day2::Instruction {
+            dir: crate::y2021::day2::Direction::Forward,
+            size: 2,
+        }
+    );
     Ok(())
 }
 
 #[test]
-fn test_calculate_position()  -> Result<(),String> {
-    use crate::y2021::day2::{Instruction, Direction};
+fn test_calculate_position() -> Result<(), String> {
+    use crate::y2021::day2::{Direction, Instruction};
     let input = vec![
-        Instruction{dir: Direction::Forward, size: 5},
-        Instruction{dir: Direction::Down, size: 5},
-        Instruction{dir: Direction::Forward, size: 8},
-        Instruction{dir: Direction::Up, size: 3},
-        Instruction{dir: Direction::Down, size: 8},
-        Instruction{dir: Direction::Forward,size: 2},
+        Instruction {
+            dir: Direction::Forward,
+            size: 5,
+        },
+        Instruction {
+            dir: Direction::Down,
+            size: 5,
+        },
+        Instruction {
+            dir: Direction::Forward,
+            size: 8,
+        },
+        Instruction {
+            dir: Direction::Up,
+            size: 3,
+        },
+        Instruction {
+            dir: Direction::Down,
+            size: 8,
+        },
+        Instruction {
+            dir: Direction::Forward,
+            size: 2,
+        },
     ];
-    assert_eq!(crate::y2021::day2::calculate_position(input), (10,15));
+    assert_eq!(crate::y2021::day2::calculate_position(input), (10, 15));
     Ok(())
 }
 
 #[test]
-fn test_calculate_advance_position()  -> Result<(),String> {
-    use crate::y2021::day2::{Instruction, Direction};
+fn test_calculate_advance_position() -> Result<(), String> {
+    use crate::y2021::day2::{Direction, Instruction};
     let input = vec![
-        Instruction{dir: Direction::Forward, size: 5},
-        Instruction{dir: Direction::Down, size: 5},
-        Instruction{dir: Direction::Forward, size: 8},
-        Instruction{dir: Direction::Up, size: 3},
-        Instruction{dir: Direction::Down, size: 8},
-        Instruction{dir: Direction::Forward,size: 2},
+        Instruction {
+            dir: Direction::Forward,
+            size: 5,
+        },
+        Instruction {
+            dir: Direction::Down,
+            size: 5,
+        },
+        Instruction {
+            dir: Direction::Forward,
+            size: 8,
+        },
+        Instruction {
+            dir: Direction::Up,
+            size: 3,
+        },
+        Instruction {
+            dir: Direction::Down,
+            size: 8,
+        },
+        Instruction {
+            dir: Direction::Forward,
+            size: 2,
+        },
     ];
-    assert_eq!(crate::y2021::day2::calculate_advance_position(input), (60,15));
+    assert_eq!(
+        crate::y2021::day2::calculate_advance_position(input),
+        (60, 15)
+    );
     Ok(())
 }

@@ -9,8 +9,8 @@ pub fn count_increase(l: &[i64]) -> usize {
 }
 
 pub fn count_window_increase(l: &[i64], n: usize) -> usize {
-    if n>=l.len() {
-        return 0
+    if n >= l.len() {
+        return 0;
     }
     l.windows(n)
         .map(|w| w.iter().sum::<i64>())
@@ -18,5 +18,4 @@ pub fn count_window_increase(l: &[i64], n: usize) -> usize {
         .windows(2)
         .filter(|w| w[0] < w[1])
         .count()
-   
 }
