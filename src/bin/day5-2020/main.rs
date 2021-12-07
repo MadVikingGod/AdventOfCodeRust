@@ -12,7 +12,7 @@ fn main() {
 
     println!("{:?}", nat_sum(*max) - nat_sum(*min - 1) - sum);
 
-    seat_nums.sort();
+    seat_nums.sort_unstable();
     // println!("{:?}",seat_nums)
 }
 

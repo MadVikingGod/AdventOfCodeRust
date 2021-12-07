@@ -22,7 +22,7 @@ impl Rule {
         Rule {
             min: min.parse().unwrap(),
             max: max.parse().unwrap(),
-            charactor: charactor.chars().nth(0).unwrap(),
+            charactor: charactor.chars().next().unwrap(),
         }
     }
     pub fn check_password(&self, password: String) -> bool {

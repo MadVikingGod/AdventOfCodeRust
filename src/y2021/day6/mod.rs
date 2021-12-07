@@ -7,10 +7,10 @@ pub fn read_input() -> School {
 pub fn parse_school(input: &str) -> School {
     let mut fish: HashMap<u64, u64> = HashMap::new();
     input
-        .split(",")
+        .split(',')
         .map(|val| val.parse::<u64>().unwrap())
         .for_each(|f| *fish.entry(f).or_insert(0) += 1);
-    School { fish: fish }
+    School { fish }
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -19,7 +19,7 @@ pub struct School {
 }
 
 impl School {
-    pub fn count_fish(self: &Self) -> u64 {
+    pub fn count_fish(&self) -> u64 {
         self.fish.values().sum()
     }
 }

@@ -23,8 +23,8 @@ impl Map {
     pub fn slope(&self, dx: usize, dy: usize) -> Slope {
         Slope {
             m: self.clone(),
-            dx: dx,
-            dy: dy,
+            dx,
+            dy,
             x: 0,
             y: 0,
         }

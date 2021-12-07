@@ -6,7 +6,7 @@ pub fn read_input() -> (Vec<i64>, Vec<board::Board>) {
     let numbers: Vec<i64> = input
         .next()
         .unwrap()
-        .split(",")
+        .split(',')
         .filter_map(|val| val.parse().ok())
         .collect();
     let boards = parse_boards(input.collect());

@@ -1,6 +1,6 @@
 pub fn read_input() -> Vec<u64> {
     let input = include_str!("input.txt");
-    input.lines().map(|l| convert(l)).collect()
+    input.lines().map(convert).collect()
 }
 
 pub fn convert(s: &str) -> u64 {

@@ -51,7 +51,7 @@ impl Passport {
             .filter(|s| re.is_match(s))
             .and_then(|s| s.parse().ok())
             .unwrap_or(0);
-        1920 <= year && year <= 2002
+        (1920..=2002).contains(&year)
     }
     fn valid_issue(&self) -> bool {
         let re = Regex::new(r"\d{4}").unwrap();
@@ -61,7 +61,7 @@ impl Passport {
             .filter(|s| re.is_match(s))
             .and_then(|s| s.parse().ok())
             .unwrap_or(0);
-        2010 <= year && year <= 2020
+        (2010..=2020).contains(&year)
     }
     fn valid_expiration(&self) -> bool {
         let re = Regex::new(r"\d{4}").unwrap();
@@ -71,7 +71,7 @@ impl Passport {
             .filter(|s| re.is_match(s))
             .and_then(|s| s.parse().ok())
             .unwrap_or(0);
-        2020 <= year && year <= 2030
+        (2020..=2030).contains(&year)
     }
     fn valid_height(&self) -> bool {
         let re = Regex::new(r"(\d+)(in|cm)").unwrap();
@@ -83,8 +83,8 @@ impl Passport {
             .map(|cap| (cap.0.parse::<u32>().unwrap(), cap.1))
             .unwrap_or((0, "none"));
         match metric {
-            "cm" => 150 <= height && height <= 193,
-            "in" => 59 <= height && height <= 76,
+            "cm" => (150..=193).contains(&height),
+            "in" => (59..=76).contains(&height),
             _ => false,
         }
     }

@@ -19,7 +19,7 @@ pub fn convert_everyone(s: &str) -> HashSet<char> {
         .lines()
         .map(|l| l.chars().collect::<HashSet<char>>())
         .collect();
-    if members.len() == 0 {
+    if members.is_empty() {
         return HashSet::new();
     }
     let mut u = members.get(0).unwrap().clone();

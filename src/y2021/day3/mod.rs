@@ -3,13 +3,10 @@ pub fn read_input() -> Vec<&'static str> {
     input.lines().collect()
 }
 
-fn calculate_score(list: &Vec<&str>) -> Vec<usize> {
+fn calculate_score(list: &[&str]) -> Vec<usize> {
     let mut acc: Vec<usize> = vec![0; list[0].len()];
     list.iter().for_each(|line| {
-        line.chars().enumerate().for_each(|(i, c)| match c {
-            '1' => acc[i] += 1,
-            _ => {}
-        });
+        line.chars().enumerate().for_each(|(i, c)| if c == '1' { acc[i] += 1 });
     });
     acc
 }
@@ -36,7 +33,7 @@ pub fn calculate_epsilon(gamma: String) -> String {
 fn filter_oxygen(list: Vec<&str>, pos: usize) -> Vec<&str> {
     let score = calculate_score(&list);
     // println!("POS {} score {:?}",pos,score);
-    let filter = if score[pos] >= (&list.len() - score[pos]) {
+    let filter = if score[pos] >= (list.len() - score[pos]) {
         '1'
     } else {
         '0'
@@ -56,7 +53,7 @@ fn filter_oxygen(list: Vec<&str>, pos: usize) -> Vec<&str> {
 fn filter_co2(list: Vec<&str>, pos: usize) -> Vec<&str> {
     let score = calculate_score(&list);
     // println!("POS {} score {:?} ",pos,score);
-    let filter = if score[pos] < (&list.len() - score[pos]) {
+    let filter = if score[pos] < (list.len() - score[pos]) {
         '1'
     } else {
         '0'

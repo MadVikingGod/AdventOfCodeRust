@@ -19,12 +19,11 @@ fn main() {
     let (num, mut board) = read_input();
 
     for i in num {
-        board = board.iter().map(|b| b.mark(i)).filter_map(|b| {
+        board = board.iter().map(|b| b.mark(i)).filter(|b| {
             if b.is_winner() {
                 println!("Winner {}, {}",i, b.sum()*i);
-                return None
             }
-            Some(b)
+            !b.is_winner()
         }).collect();
         
     }

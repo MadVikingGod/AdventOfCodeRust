@@ -1,4 +1,5 @@
 use itertools::Itertools;
+use std::cmp::Ordering;
 
 pub fn read_input() -> Vec<Line> {
     let input = include_str!("input.txt");
@@ -14,7 +15,7 @@ pub fn parse_lines(lines: Vec<&str>) -> Vec<Line> {
                 .split(" -> ")
                 .map(|point| {
                     let (v1, v2) = point
-                        .split(",")
+                        .split(',')
                         .map(|vert| vert.parse().unwrap())
                         .next_tuple()
                         .unwrap();
@@ -22,7 +23,7 @@ pub fn parse_lines(lines: Vec<&str>) -> Vec<Line> {
                 })
                 .next_tuple()
                 .unwrap();
-            Line { p1: p1, p2: p2 }
+            Line { p1, p2 }
         })
         .collect()
 }
@@ -40,37 +41,34 @@ pub struct Line {
 }
 
 impl Line {
-    pub fn is_vertical(self: &Self) -> bool {
+    pub fn is_vertical(&self) -> bool {
         self.p1.y == self.p2.y
     }
 
-    pub fn is_horizontal(self: &Self) -> bool {
+    pub fn is_horizontal(&self) -> bool {
         self.p1.x == self.p2.x
     }
 
-    pub fn slope(self: &Self) -> f64 {
+    pub fn slope(&self) -> f64 {
         (self.p1.y - self.p2.y) as f64 / (self.p1.x - self.p2.x) as f64
     }
 
-    pub fn iter(self: &Self) -> LineIter {
-        let x = if self.p2.x - self.p1.x > 0 {
-            1
-        } else if self.p2.x - self.p1.x < 0 {
-            -1
-        } else {
-            0
+    pub fn iter(&self) -> LineIter {
+        let x = match self.p2.x.cmp(&self.p1.x) {
+            Ordering::Greater => 1,
+            Ordering::Less => -1,
+            Ordering::Equal => 0,
         };
-        let y = if self.p2.y - self.p1.y > 0 {
-            1
-        } else if self.p2.y - self.p1.y < 0 {
-            -1
-        } else {
-            0
+
+        let y = match self.p2.y.cmp(&self.p1.y) {
+            Ordering::Greater => 1,
+            Ordering::Less => -1,
+            Ordering::Equal => 0,
         };
         LineIter {
             cur: self.p1.clone(),
             stop: self.p2.clone(),
-            dir: Point { x: x, y: y },
+            dir: Point { x, y },
             finished: false,
         }
     }

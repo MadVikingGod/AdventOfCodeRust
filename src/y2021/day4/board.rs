@@ -21,7 +21,7 @@ pub fn from_list(list: Vec<&str>) -> Result<Board, &str> {
             list.iter()
                 .map(|&line| {
                     line.split_whitespace()
-                        .map(|value| value.trim_end_matches(","))
+                        .map(|value| value.trim_end_matches(','))
                         .map(|value| Spot {
                             value: value.parse().unwrap(),
                             seen: false,
@@ -35,7 +35,7 @@ pub fn from_list(list: Vec<&str>) -> Result<Board, &str> {
 }
 
 impl Board {
-    pub fn is_winner(self: &Self) -> bool {
+    pub fn is_winner(&self) -> bool {
         self.arry
             .as_rows()
             .iter()
@@ -47,14 +47,14 @@ impl Board {
                 .any(|col| col.iter().all(|spot| spot.seen))
     }
 
-    pub fn sum(self: &Self) -> i64 {
+    pub fn sum(&self) -> i64 {
         self.arry
             .elements_row_major_iter()
             .filter_map(|spot| if !spot.seen { Some(spot.value) } else { None })
             .sum()
     }
 
-    pub fn mark(self: &Self, num: i64) -> Self {
+    pub fn mark(&self, num: i64) -> Self {
         Self {
             arry: Array2D::from_row_major(
                 self.arry

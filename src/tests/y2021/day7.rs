@@ -13,7 +13,7 @@ fn test_distance() -> Result<(), String> {
 #[test]
 fn test_find_min_distance() -> Result<(), String> {
     assert_eq!(
-        day7::find_min_distance(vec![16, 1, 2, 0, 4, 2, 7, 1, 2, 14]),
+        day7::find_min_distance(&vec![16, 1, 2, 0, 4, 2, 7, 1, 2, 14]),
         (2, 37)
     );
     Ok(())
@@ -22,7 +22,7 @@ fn test_find_min_distance() -> Result<(), String> {
 #[test]
 fn test_find_min_advance_distance() -> Result<(), String> {
     assert_eq!(
-        day7::find_min_advance_distance(vec![16, 1, 2, 0, 4, 2, 7, 1, 2, 14]),
+        day7::find_min_advance_distance(&vec![16, 1, 2, 0, 4, 2, 7, 1, 2, 14]),
         (5, 168)
     );
     Ok(())
