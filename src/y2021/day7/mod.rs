@@ -33,7 +33,7 @@ pub fn find_min_distance(list: &[i64]) -> (i64, i64) {
 pub fn advance_distance(x: i64, y: i64) -> i64 {
     match distance(x, y) {
         0 => 0,
-        z => (1..z + 1).sum(),
+        z => z * (z + 1) / 2,
     }
 }
 

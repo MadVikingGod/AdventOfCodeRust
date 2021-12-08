@@ -6,7 +6,11 @@ pub fn read_input() -> Vec<&'static str> {
 fn calculate_score(list: &[&str]) -> Vec<usize> {
     let mut acc: Vec<usize> = vec![0; list[0].len()];
     list.iter().for_each(|line| {
-        line.chars().enumerate().for_each(|(i, c)| if c == '1' { acc[i] += 1 });
+        line.chars().enumerate().for_each(|(i, c)| {
+            if c == '1' {
+                acc[i] += 1
+            }
+        });
     });
     acc
 }
