@@ -30,7 +30,7 @@ pub fn parse_groups(input: &[&str]) -> HashMap<String, u64> {
     for group in groups.iter() {
         let g = map
             .entry(group.len())
-            .or_insert_with( || HashSet::from(['a', 'b', 'c', 'd', 'e', 'f', 'g']));
+            .or_insert_with(|| HashSet::from(['a', 'b', 'c', 'd', 'e', 'f', 'g']));
         *g = g.intersection(group).cloned().collect();
     }
 
