@@ -1,5 +1,5 @@
 use advent_of_code::y2021::day5::read_input;
-use advent_of_code::y2021::day5::Point;
+use advent_of_code::util::Point;
 
 use std::collections::HashMap;
 

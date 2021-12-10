@@ -1,6 +1,6 @@
 use advent_of_code::y2021::day9::*;
-use advent_of_code::util::point::Point;
-use advent_of_code::util::field::Field;
+use advent_of_code::util::Point;
+use advent_of_code::util::Field;
 use std::collections::HashSet;
 use std::collections::VecDeque;
 use itertools::Itertools;

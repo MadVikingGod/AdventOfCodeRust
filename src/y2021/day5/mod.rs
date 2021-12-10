@@ -1,5 +1,6 @@
 use itertools::Itertools;
 use std::cmp::Ordering;
+use crate::util::Point;
 
 pub fn read_input() -> Vec<Line> {
     let input = include_str!("input.txt");
@@ -26,12 +27,6 @@ pub fn parse_lines(lines: Vec<&str>) -> Vec<Line> {
             Line { p1, p2 }
         })
         .collect()
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct Point {
-    pub x: i64,
-    pub y: i64,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -91,10 +86,7 @@ impl Iterator for LineIter {
         if self.cur == self.stop {
             self.finished = true
         };
-        self.cur = Point {
-            x: self.dir.x + self.cur.x,
-            y: self.dir.y + self.cur.y,
-        };
+        self.cur = self.cur + self.dir;
         Some(ret)
     }
 }

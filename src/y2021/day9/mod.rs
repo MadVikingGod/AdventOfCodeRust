@@ -1,5 +1,5 @@
-use crate::util::field::Field;
-use crate::util::point::*;
+use crate::util::Field;
+use crate::util::Point;
 
 pub fn read_input() -> Field<i64> {
     let input = include_str!("input.txt");
