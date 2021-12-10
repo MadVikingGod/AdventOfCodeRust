@@ -20,7 +20,14 @@ mkdir -p $dirs
 ### Bins
 touch $bin_dir/instructions.txt
 grep -E "use advent_of_code::y$year::day$day::read_input;" $bin_dir/main.rs -q || cat >$bin_dir/main.rs <<EOF
-use advent_of_code::y$year::day$day::read_input;
+use advent_of_code::y$year::day$day::*;
+// Common tools
+// use advent_of_code::util::Point;
+// use advent_of_code::util::Field;
+// use std::collections::HashMap;
+// use std::collections::HashSet;
+// use std::collections::VecDeque;
+// use itertools::Itertools;
 
 fn main() {
     println!("Hello, world!");
@@ -45,6 +52,14 @@ grep -E "y$year" src/lib.rs -q || echo "Need to add 'pub mod y$year;' to src/lib
 grep -E "day$day" src/y$year/mod.rs -q || echo "pub mod day$day;" >> src/y$year/mod.rs
 touch $lib_dir/input.txt
 grep -E "pub fn read_input()" $lib_dir/mod.rs -q || cat >$lib_dir/mod.rs <<EOF
+// Common tools
+// use advent_of_code::util::Point;
+// use advent_of_code::util::Field;
+// use std::collections::HashMap;
+// use std::collections::HashSet;
+// use std::collections::VecDeque;
+// use itertools::Itertools;
+
 pub fn read_input() -> Vec<&'static str> {
     let input = include_str!("input.txt");
     input.lines().collect()
