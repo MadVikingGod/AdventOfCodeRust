@@ -7,15 +7,15 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'day8-2021'",
+            "name": "Debug executable 'day10-2021'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=day8-2021",
+                    "--bin=day10-2021",
                     "--package=advent_of_code"
                 ],
                 "filter": {
-                    "name": "day8-2021",
+                    "name": "day10-2021",
                     "kind": "bin"
                 }
             },
