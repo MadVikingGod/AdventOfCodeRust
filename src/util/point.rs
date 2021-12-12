@@ -32,3 +32,10 @@ pub const EAST: Point = Point { x: 1, y: 0 };
 pub const WEST: Point = Point { x: -1, y: 0 };
 
 pub const DIRECTIONS: [Point; 4] = [NORTH, SOUTH, EAST, WEST];
+
+pub const NE: Point = Point { x: 1, y: -1 };
+pub const SE: Point = Point { x: 1, y: 1 };
+pub const SW: Point = Point { x: -1, y: 1 };
+pub const NW: Point = Point { x: -1, y: -1 };
+
+pub const DIRECTIONS_DIAG: [Point; 8] = [NORTH, SOUTH, EAST, WEST, NE, SE, SW, NW];
