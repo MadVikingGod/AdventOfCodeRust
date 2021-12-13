@@ -1,0 +1,25 @@
+graph {
+    start -- gc;
+    start -- FK;
+    start -- yh;
+    FK -- gc;
+    gc -- dw;
+    sp -- FN;
+    dw -- gn;
+    AN -- gn;
+    yh -- gn;
+    sp -- AN;
+    ik -- dw;
+    FK -- dw;
+    yh -- FK;
+    gc -- gn;
+    dw -- AN;
+    gn -- sp;
+    gn -- FK;
+    sp -- FK;
+    yh -- gc;
+    end -- sp;
+    AN -- end;
+    dw -- end;
+    
+}
