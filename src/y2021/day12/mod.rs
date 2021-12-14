@@ -18,12 +18,14 @@ pub struct Node {
 
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct Graph {
-    pub nodes: HashMap<String, Node>
+    pub nodes: HashMap<String, Node>,
 }
 
 impl Graph {
     pub fn new(input: &str) -> Graph {
-        let mut g = Graph{nodes: HashMap::new()};
+        let mut g = Graph {
+            nodes: HashMap::new(),
+        };
         input.lines().for_each(|line| {
             let (n1, n2) = line.split_once("-").unwrap();
             g.insert(n1.to_string(), n2.to_string())
@@ -32,8 +34,20 @@ impl Graph {
     }
 
     pub fn insert(&mut self, n1: String, n2: String) {
-        self.nodes.entry(n1.clone()).or_insert(Node{edges: HashSet::new()}).edges.insert(n2.clone());
-        self.nodes.entry(n2).or_insert(Node{edges: HashSet::new()}).edges.insert(n1);
+        self.nodes
+            .entry(n1.clone())
+            .or_insert(Node {
+                edges: HashSet::new(),
+            })
+            .edges
+            .insert(n2.clone());
+        self.nodes
+            .entry(n2)
+            .or_insert(Node {
+                edges: HashSet::new(),
+            })
+            .edges
+            .insert(n1);
     }
     pub fn get(&self, node: &String) -> Option<Vec<String>> {
         let n = self.nodes.get(node)?;

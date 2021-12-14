@@ -22,8 +22,8 @@ touch $bin_dir/instructions.txt
 grep -E "use advent_of_code::y$year::day$day::read_input;" $bin_dir/main.rs -q || cat >$bin_dir/main.rs <<EOF
 use advent_of_code::y$year::day$day::*;
 // Common tools
-// use advent_of_code::util::Point;
 // use advent_of_code::util::Field;
+// use advent_of_code::util::Point;
 // use std::collections::HashMap;
 // use std::collections::HashSet;
 // use std::collections::VecDeque;
@@ -53,8 +53,8 @@ grep -E "day$day" src/y$year/mod.rs -q || echo "pub mod day$day;" >> src/y$year/
 touch $lib_dir/input.txt
 grep -E "pub fn read_input()" $lib_dir/mod.rs -q || cat >$lib_dir/mod.rs <<EOF
 // Common tools
-// use crate::util::Point;
 // use crate::util::Field;
+// use crate::util::Point;
 // use std::collections::HashMap;
 // use std::collections::HashSet;
 // use std::collections::VecDeque;

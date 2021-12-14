@@ -1,6 +1,6 @@
+use crate::util::Point;
 use itertools::Itertools;
 use std::cmp::Ordering;
-use crate::util::Point;
 
 pub fn read_input() -> Vec<Line> {
     let input = include_str!("input.txt");

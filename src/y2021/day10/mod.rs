@@ -1,13 +1,17 @@
 pub fn read_input() -> Vec<Line> {
     let input = include_str!("input.txt");
-    input.lines().map(|line| Line{c: line.chars().collect()}).collect()
+    input
+        .lines()
+        .map(|line| Line {
+            c: line.chars().collect(),
+        })
+        .collect()
 }
 
 #[derive(Debug, Clone)]
 pub struct Line {
     pub c: Vec<char>,
 }
-
 
 impl Line {
     pub fn invalid(&self) -> Option<char> {
@@ -22,13 +26,13 @@ impl Line {
                     '{' => '}',
                     '(' => ')',
                     '<' => '>',
-                    _ => return Some('X')
+                    _ => return Some('X'),
                 };
                 if comp != *c {
-                    return Some(*c)
+                    return Some(*c);
                 };
             };
-        };
+        }
         None
     }
 
@@ -44,10 +48,10 @@ impl Line {
                     '{' => '}',
                     '(' => ')',
                     '<' => '>',
-                    _ => return None
+                    _ => return None,
                 };
                 if comp != *c {
-                    return None
+                    return None;
                 };
             };
         }

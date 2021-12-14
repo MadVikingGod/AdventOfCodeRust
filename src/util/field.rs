@@ -50,8 +50,9 @@ where
     }
 }
 
-impl<T> fmt::Display for Field<T> 
-    where T: fmt::Display
+impl<T> fmt::Display for Field<T>
+where
+    T: fmt::Display,
 {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut min_x = 0;
@@ -59,31 +60,43 @@ impl<T> fmt::Display for Field<T>
         let mut min_y = 0;
         let mut max_y = 0;
         self.map.keys().for_each(|p| {
-            if p.x > max_x { max_x = p.x};
-            if p.x < min_x { min_x = p.x};
-            if p.y > max_y { max_y = p.y};
-            if p.y < min_y { min_y = p.y};
+            if p.x > max_x {
+                max_x = p.x
+            };
+            if p.x < min_x {
+                min_x = p.x
+            };
+            if p.y > max_y {
+                max_y = p.y
+            };
+            if p.y < min_y {
+                min_y = p.y
+            };
         });
-        for y in min_y..max_y+1 {
-            for x in min_x..max_x+1 {
-                match self.map.get(&Point{x,y}) {
-                    Some(n) => write!(f,"{}", n)?,
+        for y in min_y..max_y + 1 {
+            for x in min_x..max_x + 1 {
+                match self.map.get(&Point { x, y }) {
+                    Some(n) => write!(f, "{}", n)?,
                     None => write!(f, ".")?,
                 };
+            }
+            if y != max_y {
+                writeln!(f, "")?
             };
-            if y!= max_y {writeln!(f,"")?};
-        };
+        }
         Ok(())
     }
 }
 
 #[test]
 fn test_display() {
-    let f: Field<char> = Field{map:HashMap::from([
-        (Point{x:0,y:3}, '3'),
-        (Point{x:4,y:1}, ']'),
-        (Point{x:2,y:2}, '!'),
-    ])};
+    let f: Field<char> = Field {
+        map: HashMap::from([
+            (Point { x: 0, y: 3 }, '3'),
+            (Point { x: 4, y: 1 }, ']'),
+            (Point { x: 2, y: 2 }, '!'),
+        ]),
+    };
     let want = ".....
 ....]
 ..!..
@@ -93,8 +106,17 @@ fn test_display() {
 
 #[test]
 fn test_diag() {
-    let diag: Vec<_> =  iproduct!(DIRECTIONS,DIRECTIONS)
-        .map(|(p1,p2)| p1+p2)
-        .filter(|&p1| p1 != Point{x:0,y:0}).collect();
-    assert_eq!(diag, vec![Point{x:0,y:0},Point{x:0,y:0},Point{x:0,y:0},Point{x:0,y:0}])
+    let diag: Vec<_> = iproduct!(DIRECTIONS, DIRECTIONS)
+        .map(|(p1, p2)| p1 + p2)
+        .filter(|&p1| p1 != Point { x: 0, y: 0 })
+        .collect();
+    assert_eq!(
+        diag,
+        vec![
+            Point { x: 0, y: 0 },
+            Point { x: 0, y: 0 },
+            Point { x: 0, y: 0 },
+            Point { x: 0, y: 0 }
+        ]
+    )
 }
