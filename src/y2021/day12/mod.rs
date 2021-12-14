@@ -49,7 +49,7 @@ impl Graph {
             .edges
             .insert(n1);
     }
-    pub fn get(&self, node: &String) -> Option<Vec<String>> {
+    pub fn get(&self, node: &str) -> Option<Vec<String>> {
         let n = self.nodes.get(node)?;
         Some(n.edges.iter().cloned().collect())
     }

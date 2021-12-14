@@ -65,7 +65,7 @@ fn main() {
    println!("Remember add one to the last char of the formula 'O' :)");
 }
 
-fn step(input: &String, map: &HashMap<String,String>) -> String {
+fn step(input: &str, map: &HashMap<String,String>) -> String {
     let n1 = input.chars().take(input.len() - 1);
     let n2 = input.chars().skip(1);
     n1.zip(n2).map(|(c1,c2)| {

@@ -58,7 +58,7 @@ fn main() {
     let incompletes: Vec<_> = lines.iter().filter_map(|line| line.incomplete()).collect();
     let scores: Vec<_> = incompletes.iter()
         .map(|inc| {
-            inc.chars().rev().fold(0 as i64, |acc, c| {
+            inc.chars().rev().fold(0_i64, |acc, c| {
                 let score = match c {
                     '(' => 1,
                     '[' => 2,

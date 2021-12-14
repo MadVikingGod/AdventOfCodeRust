@@ -61,8 +61,8 @@ impl Line {
             Ordering::Equal => 0,
         };
         LineIter {
-            cur: self.p1.clone(),
-            stop: self.p2.clone(),
+            cur: self.p1,
+            stop: self.p2,
             dir: Point { x, y },
             finished: false,
         }
@@ -82,7 +82,7 @@ impl Iterator for LineIter {
         if self.finished {
             return None;
         };
-        let ret = self.cur.clone();
+        let ret = self.cur;
         if self.cur == self.stop {
             self.finished = true
         };

@@ -90,7 +90,7 @@ fn find_paths(g: &Graph) -> Vec<Path> {
                 if is_lower(&neighbor) && path.contains(&neighbor) {
                     return
                 }
-                q.push_back((neighbor.clone(), p));
+                q.push_back((neighbor, p));
         });
         
     };
@@ -98,39 +98,39 @@ fn find_paths(g: &Graph) -> Vec<Path> {
 }
 
 #[derive(Clone)]
-struct Adv_Path {
+struct AdvPath {
     path: Vec<String>,
     has_double: bool,
 }
 
-fn is_lower(s: &String) -> bool {
-    s == &s.to_lowercase()
+fn is_lower(s: &str) -> bool {
+    s == s.to_lowercase()
 }
 
-impl Adv_Path {
+impl AdvPath {
     fn push(&mut self, s: String) {
         if is_lower(&s) && self.path.contains(&s) {
             self.has_double = true;
         };
         self.path.push(s);
     }
-    fn can_push(&self, s:&String) -> bool {
+    fn can_push(&self, s:&str) -> bool {
         if s == "start" {
             return false
         }
         if !is_lower(s) {
             return true
         }
-        !(self.has_double && self.path.contains(s))
+        !(self.has_double && self.path.contains(&s.to_string()))
     }
 }
 
 
-fn find_adv_paths(g: &Graph) -> Vec<Adv_Path> {
-    let mut q: VecDeque<(String, Adv_Path)> = VecDeque::new();
-    let path = Adv_Path{path: vec!["start".to_string()], has_double:false};
+fn find_adv_paths(g: &Graph) -> Vec<AdvPath> {
+    let mut q: VecDeque<(String, AdvPath)> = VecDeque::new();
+    let path = AdvPath{path: vec!["start".to_string()], has_double:false};
     q.push_front(("start".to_string(), path));
-    let mut paths: Vec<Adv_Path> = vec![];
+    let mut paths: Vec<AdvPath> = vec![];
 
     while let Some((node, path)) = q.pop_front() {
         let neighbors = g.get(&node).unwrap();
@@ -139,7 +139,7 @@ fn find_adv_paths(g: &Graph) -> Vec<Adv_Path> {
             .for_each(|neighbor| {
                 let mut p = path.clone();
                 if neighbor == "end" {
-                    p.push(neighbor.clone());
+                    p.push(neighbor);
                     paths.push(p);
                     return
                 }
@@ -147,7 +147,7 @@ fn find_adv_paths(g: &Graph) -> Vec<Adv_Path> {
                     return
                 }
                 p.push(neighbor.clone());
-                q.push_back((neighbor.clone(), p));
+                q.push_back((neighbor, p));
         });
         
     };

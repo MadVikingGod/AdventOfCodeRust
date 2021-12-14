@@ -7,16 +7,16 @@ use std::collections::HashSet;
 use std::collections::VecDeque;
 // use itertools::Itertools;
 
-const TEST_INPUT: &str = "5483143223
-2745854711
-5264556173
-6141336146
-6357385478
-4167524645
-2176841721
-6882881134
-4846848554
-5283751526";
+// const TEST_INPUT: &str = "5483143223
+// 2745854711
+// 5264556173
+// 6141336146
+// 6357385478
+// 4167524645
+// 2176841721
+// 6882881134
+// 4846848554
+// 5283751526";
 
 fn main() {
     println!("Hello, world!");
@@ -49,8 +49,8 @@ fn step(f: &Field<u32>) -> Field<u32> {
     for (p,v) in next.map.iter_mut() {
         *v += 1;
         if *v > 9 {
-            flashed.insert(p.clone());
-            q.push_back(p.clone());
+            flashed.insert(*p);
+            q.push_back(*p);
         };
     };
 
@@ -58,7 +58,7 @@ fn step(f: &Field<u32>) -> Field<u32> {
         next.neighbors_diag(&p).iter().for_each(|(np, v)| {
             next.insert(*np, v+1);
             if v+1 >9 && !flashed.contains(np) {
-                q.push_back(np.clone());
+                q.push_back(*np);
                 flashed.insert(*np);
             }
         })

@@ -7,6 +7,15 @@ pub struct Field<T> {
     pub map: HashMap<Point, T>,
 }
 
+impl<T> Default for Field<T>
+where
+    T: Copy,
+{
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl<T> Field<T>
 where
     T: Copy,
@@ -48,6 +57,9 @@ where
     pub fn len(&self) -> usize {
         self.map.len()
     }
+    pub fn is_empty(&self) -> bool {
+        self.map.is_empty()
+    }
 }
 
 impl<T> fmt::Display for Field<T>
@@ -81,7 +93,7 @@ where
                 };
             }
             if y != max_y {
-                writeln!(f, "")?
+                writeln!(f)?
             };
         }
         Ok(())

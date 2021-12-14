@@ -68,6 +68,9 @@ impl Page {
     pub fn len(&self) -> usize {
         self.dots.len()
     }
+    pub fn is_empty(&self) -> bool {
+        self.dots.is_empty()
+    }
 
     pub fn as_field(&self) -> Field<char> {
         let mut f = Field::new();

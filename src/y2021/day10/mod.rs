@@ -16,8 +16,8 @@ pub struct Line {
 impl Line {
     pub fn invalid(&self) -> Option<char> {
         let mut stack: Vec<char> = vec![];
-        let mut pos = self.c.iter();
-        while let Some(c) = pos.next() {
+        let pos = self.c.iter();
+        for c in pos {
             if "[{(<".contains(*c) {
                 stack.push(*c);
             } else {
@@ -38,8 +38,8 @@ impl Line {
 
     pub fn incomplete(&self) -> Option<String> {
         let mut stack: Vec<char> = vec![];
-        let mut pos = self.c.iter();
-        while let Some(c) = pos.next() {
+        let pos = self.c.iter();
+        for c in pos {
             if "[{(<".contains(*c) {
                 stack.push(*c);
             } else {

@@ -38,6 +38,12 @@ pub struct Formula {
 }
 pub type Map = HashMap<String, Vec<String>>;
 
+impl Default for Formula {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Formula {
     pub fn new() -> Formula {
         Formula { f: HashMap::new() }
