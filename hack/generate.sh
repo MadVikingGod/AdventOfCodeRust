@@ -53,8 +53,8 @@ grep -E "day$day" src/y$year/mod.rs -q || echo "pub mod day$day;" >> src/y$year/
 touch $lib_dir/input.txt
 grep -E "pub fn read_input()" $lib_dir/mod.rs -q || cat >$lib_dir/mod.rs <<EOF
 // Common tools
-// use advent_of_code::util::Point;
-// use advent_of_code::util::Field;
+// use crate::util::Point;
+// use crate::util::Field;
 // use std::collections::HashMap;
 // use std::collections::HashSet;
 // use std::collections::VecDeque;
