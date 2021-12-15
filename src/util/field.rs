@@ -60,6 +60,9 @@ where
     pub fn is_empty(&self) -> bool {
         self.map.is_empty()
     }
+    pub fn contains(&self, p: &Point) -> bool {
+        self.map.contains_key(p)
+    }
 }
 
 impl<T> fmt::Display for Field<T>
@@ -114,21 +117,4 @@ fn test_display() {
 ..!..
 3....";
     assert_eq!(format!("{}", f), want)
-}
-
-#[test]
-fn test_diag() {
-    let diag: Vec<_> = iproduct!(DIRECTIONS, DIRECTIONS)
-        .map(|(p1, p2)| p1 + p2)
-        .filter(|&p1| p1 != Point { x: 0, y: 0 })
-        .collect();
-    assert_eq!(
-        diag,
-        vec![
-            Point { x: 0, y: 0 },
-            Point { x: 0, y: 0 },
-            Point { x: 0, y: 0 },
-            Point { x: 0, y: 0 }
-        ]
-    )
 }
