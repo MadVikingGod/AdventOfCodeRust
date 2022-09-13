@@ -1,7 +1,8 @@
-mod day1;
+mod day01;
+mod day02;
+mod day03;
+mod day04;
+mod day06;
+mod day07;
 mod day15;
-mod day2;
-mod day3;
-mod day4;
-mod day6;
-mod day7;
+
