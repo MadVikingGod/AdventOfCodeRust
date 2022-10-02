@@ -1,3 +1,5 @@
+#![feature(int_roundings)]
+
 pub mod util;
 
 pub mod y2020;

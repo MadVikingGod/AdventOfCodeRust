@@ -2,7 +2,7 @@ if [ -z $1 ]; then
     echo Please supply a day number
     exit 1
 fi
-day="$1"
+day="$(printf '%02d' $1)"
 
 if [ -z $2 ]; then
     year="2021"
