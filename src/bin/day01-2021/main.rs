@@ -1,6 +1,6 @@
-use advent_of_code::y2021::day01::read_input;
 use advent_of_code::y2021::day01::count_increase;
 use advent_of_code::y2021::day01::count_window_increase;
+use advent_of_code::y2021::day01::read_input;
 
 fn main() {
     println!("Hello, world!");

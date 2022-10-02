@@ -26,6 +26,17 @@ impl<'a, 'b> std::ops::Add<&'b Point> for &'a Point {
     }
 }
 
+impl std::ops::Mul<i64> for Point {
+    type Output = Self;
+
+    fn mul(self, rhs: i64) -> Self::Output {
+        Point {
+            x: self.x * rhs,
+            y: self.y * rhs,
+        }
+    }
+}
+
 pub const NORTH: Point = Point { x: 0, y: -1 };
 pub const SOUTH: Point = Point { x: 0, y: 1 };
 pub const EAST: Point = Point { x: 1, y: 0 };

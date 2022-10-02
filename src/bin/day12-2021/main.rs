@@ -62,7 +62,7 @@ fn main() {
     println!("{:?}", g);
     let paths = find_adv_paths(&g);
     println!("{}", paths.len());
-    
+
     let g = read_input();
     println!("{:?}", g);
     let paths = find_adv_paths(&g);
@@ -78,22 +78,19 @@ fn find_paths(g: &Graph) -> Vec<Path> {
 
     while let Some((node, path)) = q.pop_front() {
         let neighbors = g.get(&node).unwrap();
-        neighbors.iter()
-            .cloned()
-            .for_each(|neighbor| {
-                let mut p = path.clone();
-                p.push(neighbor.clone());
-                if neighbor == "end" {
-                    paths.push(p);
-                    return
-                }
-                if is_lower(&neighbor) && path.contains(&neighbor) {
-                    return
-                }
-                q.push_back((neighbor, p));
+        neighbors.iter().cloned().for_each(|neighbor| {
+            let mut p = path.clone();
+            p.push(neighbor.clone());
+            if neighbor == "end" {
+                paths.push(p);
+                return;
+            }
+            if is_lower(&neighbor) && path.contains(&neighbor) {
+                return;
+            }
+            q.push_back((neighbor, p));
         });
-        
-    };
+    }
     paths
 }
 
@@ -114,42 +111,41 @@ impl AdvPath {
         };
         self.path.push(s);
     }
-    fn can_push(&self, s:&str) -> bool {
+    fn can_push(&self, s: &str) -> bool {
         if s == "start" {
-            return false
+            return false;
         }
         if !is_lower(s) {
-            return true
+            return true;
         }
         !(self.has_double && self.path.contains(&s.to_string()))
     }
 }
 
-
 fn find_adv_paths(g: &Graph) -> Vec<AdvPath> {
     let mut q: VecDeque<(String, AdvPath)> = VecDeque::new();
-    let path = AdvPath{path: vec!["start".to_string()], has_double:false};
+    let path = AdvPath {
+        path: vec!["start".to_string()],
+        has_double: false,
+    };
     q.push_front(("start".to_string(), path));
     let mut paths: Vec<AdvPath> = vec![];
 
     while let Some((node, path)) = q.pop_front() {
         let neighbors = g.get(&node).unwrap();
-        neighbors.iter()
-            .cloned()
-            .for_each(|neighbor| {
-                let mut p = path.clone();
-                if neighbor == "end" {
-                    p.push(neighbor);
-                    paths.push(p);
-                    return
-                }
-                if !path.can_push(&neighbor) {
-                    return
-                }
-                p.push(neighbor.clone());
-                q.push_back((neighbor, p));
+        neighbors.iter().cloned().for_each(|neighbor| {
+            let mut p = path.clone();
+            if neighbor == "end" {
+                p.push(neighbor);
+                paths.push(p);
+                return;
+            }
+            if !path.can_push(&neighbor) {
+                return;
+            }
+            p.push(neighbor.clone());
+            q.push_back((neighbor, p));
         });
-        
-    };
+    }
     paths
 }

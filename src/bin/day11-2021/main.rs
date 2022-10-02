@@ -1,7 +1,7 @@
 use advent_of_code::y2021::day11::*;
 // Common tools
-use advent_of_code::util::Point;
 use advent_of_code::util::Field;
+use advent_of_code::util::Point;
 // use std::collections::HashMap;
 use std::collections::HashSet;
 use std::collections::VecDeque;
@@ -24,7 +24,11 @@ fn main() {
     let mut count: u64 = 0;
     for _ in 0..100 {
         f = step(&f);
-        f.iter().for_each(|(_,v)| if *v == 0 { count += 1 })
+        f.iter().for_each(|(_, v)| {
+            if *v == 0 {
+                count += 1
+            }
+        })
     }
     println!("{}", f);
     println!("{}", count);
@@ -35,29 +39,28 @@ fn main() {
         steps += 1;
     }
     println!("{}", steps);
-
 }
 
 fn all_zero(f: &Field<u32>) -> bool {
-    f.iter().all(|(_,v)| *v==0)
+    f.iter().all(|(_, v)| *v == 0)
 }
 
 fn step(f: &Field<u32>) -> Field<u32> {
     let mut flashed: HashSet<Point> = HashSet::new();
     let mut q: VecDeque<Point> = VecDeque::new();
     let mut next = f.clone();
-    for (p,v) in next.map.iter_mut() {
+    for (p, v) in next.map.iter_mut() {
         *v += 1;
         if *v > 9 {
             flashed.insert(*p);
             q.push_back(*p);
         };
-    };
+    }
 
     while let Some(p) = q.pop_front() {
         next.neighbors_diag(&p).iter().for_each(|(np, v)| {
-            next.insert(*np, v+1);
-            if v+1 >9 && !flashed.contains(np) {
+            next.insert(*np, v + 1);
+            if v + 1 > 9 && !flashed.contains(np) {
                 q.push_back(*np);
                 flashed.insert(*np);
             }

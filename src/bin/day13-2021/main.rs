@@ -10,7 +10,8 @@ use advent_of_code::y2021::day13::*;
 fn main() {
     println!("Hello, world!");
 
-    let p = Page::new("6,10
+    let p = Page::new(
+        "6,10
 0,14
 9,10
 0,3
@@ -27,25 +28,28 @@ fn main() {
 1,10
 2,14
 8,10
-9,0");
+9,0",
+    );
 
     println!("{}", p.fold_y(7).as_field());
     println!("{}", p.fold_y(7).fold_x(5).as_field());
 
-    let (p,_) = read_input();
+    let (p, _) = read_input();
     println!("{}", p.fold_x(655).len());
-    println!("{}", p
-        .fold_x(655)
-        .fold_y(447)
-        .fold_x(327)
-        .fold_y(223)
-        .fold_x(163)
-        .fold_y(111)
-        .fold_x(81)
-        .fold_y(55)
-        .fold_x(40)
-        .fold_y(27)
-        .fold_y(13)
-        .fold_y(6)
-        .as_field())
+    println!(
+        "{}",
+        p.fold_x(655)
+            .fold_y(447)
+            .fold_x(327)
+            .fold_y(223)
+            .fold_x(163)
+            .fold_y(111)
+            .fold_x(81)
+            .fold_y(55)
+            .fold_x(40)
+            .fold_y(27)
+            .fold_y(13)
+            .fold_y(6)
+            .as_field()
+    )
 }

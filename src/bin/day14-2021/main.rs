@@ -7,8 +7,7 @@ use std::collections::HashMap;
 // use std::collections::VecDeque;
 use itertools::Itertools;
 
-
-const TEST_INPUT : &str="NNCB
+const TEST_INPUT: &str = "NNCB
 
 CH -> B
 HH -> N
@@ -39,41 +38,43 @@ fn main() {
         // println!("After step {}: {}",i, formula);
     }
     let mut counts: HashMap<char, u64> = HashMap::new();
-    formula.chars().for_each(|c| {
-        *counts.entry(c).or_insert(0) += 1
-    });
+    formula
+        .chars()
+        .for_each(|c| *counts.entry(c).or_insert(0) += 1);
     println!("{:#?}", counts);
 
     let (inst, map) = read_input();
-   
+
     let mut formula = inst;
     for _ in 1..11 {
         formula = step(&formula, &map);
         // println!("After step {}: {}",i, formula);
     }
     let mut counts: HashMap<char, u64> = HashMap::new();
-    formula.chars().for_each(|c| {
-        *counts.entry(c).or_insert(0) += 1
-    });
+    formula
+        .chars()
+        .for_each(|c| *counts.entry(c).or_insert(0) += 1);
     println!("{:#?}", counts);
-    
-   let (mut f, map) = read_adv_input();
-   for _ in 0..40 {
-       f = f.step(&map);
-   }
-   println!("{:#?}", f.to_count());
-   println!("Remember add one to the last char of the formula 'O' :)");
+
+    let (mut f, map) = read_adv_input();
+    for _ in 0..40 {
+        f = f.step(&map);
+    }
+    println!("{:#?}", f.to_count());
+    println!("Remember add one to the last char of the formula 'O' :)");
 }
 
-fn step(input: &str, map: &HashMap<String,String>) -> String {
+fn step(input: &str, map: &HashMap<String, String>) -> String {
     let n1 = input.chars().take(input.len() - 1);
     let n2 = input.chars().skip(1);
-    n1.zip(n2).map(|(c1,c2)| {
-        let lookup: String = [c1,c2].iter().join("");
-        map.get(&lookup).unwrap_or(&lookup).clone()
-    }).collect::<String>() + &input[input.len()-1..]
+    n1.zip(n2)
+        .map(|(c1, c2)| {
+            let lookup: String = [c1, c2].iter().join("");
+            map.get(&lookup).unwrap_or(&lookup).clone()
+        })
+        .collect::<String>()
+        + &input[input.len() - 1..]
 }
-
 
 // After step 1: NCNBCHB
 // After step 1: NCNBCHB

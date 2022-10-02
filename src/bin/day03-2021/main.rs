@@ -1,6 +1,6 @@
-use advent_of_code::y2021::day03::read_input;
 use advent_of_code::y2021::day03::calculat_gama;
-use advent_of_code::y2021::day03::{calculate_oxygen, calculate_co2};
+use advent_of_code::y2021::day03::read_input;
+use advent_of_code::y2021::day03::{calculate_co2, calculate_oxygen};
 fn main() {
     println!("Hello, world!");
     let input = read_input();
