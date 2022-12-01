@@ -59,8 +59,8 @@ impl From<&str> for Instruction {
 
 impl Instruction {
     pub fn apply(&self, lights: &mut Lights) {
-        for y in self.y1..self.y2+1 {
-            for x in self.x1..self.x2+1 {
+        for y in self.y1..self.y2 + 1 {
+            for x in self.x1..self.x2 + 1 {
                 lights[y][x] = match self.kind {
                     Kind::Toggle => lights[y][x] ^ true,
                     Kind::TurnOff => false,
@@ -71,15 +71,15 @@ impl Instruction {
         }
     }
     pub fn applyDim(&self, lights: &mut DimLights) {
-        for y in self.y1..self.y2+1 {
-            for x in self.x1..self.x2+1 {
+        for y in self.y1..self.y2 + 1 {
+            for x in self.x1..self.x2 + 1 {
                 lights[y][x] += match self.kind {
                     Kind::Toggle => 2,
                     Kind::TurnOff => -1,
                     Kind::TurnOn => 1,
                     _ => 0,
                 };
-                if lights[y][x] <0 {
+                if lights[y][x] < 0 {
                     lights[y][x] = 0;
                 }
             }
@@ -88,11 +88,7 @@ impl Instruction {
 }
 
 pub fn count(lights: &Lights) -> usize {
-    lights
-        .iter()
-        .flatten()
-        .filter(|l| **l)
-        .count()
+    lights.iter().flatten().filter(|l| **l).count()
 }
 
 pub fn count_dim(lights: &DimLights) -> i64 {
@@ -116,10 +112,10 @@ fn test_instruction_parse() -> Result<(), String> {
 }
 
 #[test]
-fn test_apply() -> Result<(),String> {
+fn test_apply() -> Result<(), String> {
     let inst = Instruction::from("turn on 0,0 through 50,0");
     let mut lights: Lights = [[false; 1000]; 1000];
-    assert_eq!(0,count(&lights));
+    assert_eq!(0, count(&lights));
     inst.apply(&mut lights);
     assert_eq!(51, count(&lights));
 

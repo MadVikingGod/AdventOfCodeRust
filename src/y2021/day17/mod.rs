@@ -22,9 +22,7 @@ pub fn read_input() -> Vec<&'static str> {
 
 const steps_max: i64 = 400;
 
-
-
-pub fn x_steps(x_min: i64, x_max: i64) -> HashMap<i64, Vec<i64>>{
+pub fn x_steps(x_min: i64, x_max: i64) -> HashMap<i64, Vec<i64>> {
     let mut vx_min = 0;
     for i in 1.. {
         if (i + 1) * i / 2 >= x_min {
@@ -44,12 +42,12 @@ pub fn x_steps(x_min: i64, x_max: i64) -> HashMap<i64, Vec<i64>>{
             if x >= x_min {
                 out.entry(s).or_insert(Vec::new()).push(vx);
             }
-        };
-        let stop = (vx+1)*vx/2;
-        if stop>= x_min && stop <=x_max {
+        }
+        let stop = (vx + 1) * vx / 2;
+        if stop >= x_min && stop <= x_max {
             for s in vx..steps_max {
                 out.entry(s).or_insert(Vec::new()).push(vx);
-            };
+            }
         }
     }
     out

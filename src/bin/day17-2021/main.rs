@@ -13,5 +13,4 @@ fn main() {
     let steps = x_steps(153, 199);
     let vels = get_points(steps, -114, -75);
     println!("{}", vels.len())
-
 }
