@@ -1,10 +1,9 @@
-// Common tools
-// use crate::util::Field;
-// use crate::util::Point;
-// use std::collections::HashMap;
-// use std::collections::HashSet;
-// use std::collections::VecDeque;
-// use itertools::Itertools;
+fn main() {
+    let mut elfs = read_input();
+    println!("Part 1: {}", elfs.iter().max().unwrap());
+    elfs.sort();
+    println!("Part 2: {}", elfs.iter().rev().take(3).sum::<i64>());
+}
 
 pub fn read_input() -> Vec<i64> {
     let input = include_str!("input.txt");

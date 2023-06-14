@@ -5,7 +5,6 @@ pub mod util;
 pub mod y2015;
 pub mod y2020;
 pub mod y2021;
-pub mod y2022;
 
 extern crate array2d;
 extern crate itertools;
