@@ -1,16 +1,10 @@
 fn main() {
     let input = include_str!("input.txt");
     let rounds = parse_rounds(input);
-    let part1 = rounds
-        .iter()
-        .map(|round| round.score())
-        .sum::<u64>();
+    let part1 = rounds.iter().map(|round| round.score()).sum::<u64>();
     println!("Part 1: {}", part1);
 
-    let part2 = rounds
-        .iter()
-        .map(|round| round.score2())
-        .sum::<u64>();
+    let part2 = rounds.iter().map(|round| round.score2()).sum::<u64>();
     println!("Part 2: {}", part2);
 }
 
@@ -69,7 +63,7 @@ impl Round {
             RPS::Scissors => 3,
         };
         let outcome = if &self.elf == &self.me {
-            3 
+            3
         } else if match (&self.elf, &self.me) {
             (RPS::Rock, RPS::Paper) => true,
             (RPS::Paper, RPS::Scissors) => true,
@@ -142,11 +136,9 @@ C Z";
         .map(|round| round.score())
         .sum::<u64>();
     let score2 = parse_rounds(input)
-    .iter()
-    .map(|round| round.score2())
-    .sum::<u64>();
+        .iter()
+        .map(|round| round.score2())
+        .sum::<u64>();
     assert_eq!(score, 15);
     assert_eq!(score2, 12);
 }
-
-
