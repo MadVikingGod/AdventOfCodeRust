@@ -1,8 +1,11 @@
 fn main() {
-    let pairs = include_str!("input.txt").lines().map(|line| Pair::new(line.trim())).collect::<Vec<_>>();
+    let pairs = include_str!("input.txt")
+        .lines()
+        .map(|line| Pair::new(line.trim()))
+        .collect::<Vec<_>>();
     let count = pairs.iter().filter(|pair| pair.contains()).count();
     println!("Part 1: {}", count);
-    
+
     let count = pairs.iter().filter(|pair| pair.overlap()).count();
     println!("Part 2: {}", count);
 }
@@ -14,7 +17,9 @@ struct Pair {
 
 impl Pair {
     fn new(input: &str) -> Self {
-        let mut iter = input.split(',').flat_map(|s| s.split("-").map(|s| s.parse::<u64>().unwrap()));
+        let mut iter = input
+            .split(',')
+            .flat_map(|s| s.split("-").map(|s| s.parse::<u64>().unwrap()));
         Self {
             a: (iter.next().unwrap(), iter.next().unwrap()),
             b: (iter.next().unwrap(), iter.next().unwrap()),

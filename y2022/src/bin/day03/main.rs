@@ -2,14 +2,20 @@ use std::collections::HashSet;
 
 fn main() {
     let input = include_str!("input.txt");
-    let priority = input.lines().map(|line| Rucksack::new(line.trim()).priority().unwrap() as u64).sum::<u64>();
+    let priority = input
+        .lines()
+        .map(|line| Rucksack::new(line.trim()).priority().unwrap() as u64)
+        .sum::<u64>();
     println!("Part 1: {}", priority);
 
-    let priority = input.lines().collect::<Vec<_>>().chunks_exact(3).map(|v| Group::new(v).priority().unwrap() as u64).sum::<u64>();
+    let priority = input
+        .lines()
+        .collect::<Vec<_>>()
+        .chunks_exact(3)
+        .map(|v| Group::new(v).priority().unwrap() as u64)
+        .sum::<u64>();
     println!("Part 2: {}", priority);
 }
-
-
 
 struct Rucksack {
     left: HashSet<u8>,
@@ -55,7 +61,10 @@ impl Group {
     }
 
     fn priority(&self) -> Option<u8> {
-        let c = self.0.iter().find_map(|c| (self.1.has(c) && self.2.has(c)).then(|| c))?;
+        let c = self
+            .0
+            .iter()
+            .find_map(|c| (self.1.has(c) && self.2.has(c)).then(|| c))?;
         if c <= 'Z' as u8 {
             Some(c - 'A' as u8 + 27)
         } else {
@@ -83,6 +92,10 @@ fn test_priority() {
 
 #[test]
 fn test_group_priority() {
-    let g = Group::new(&["vJrwpWtwJgWrhcsFMMfFFhFp", "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL", "PmmdzqPrVvPwwTWBwg"]);
+    let g = Group::new(&[
+        "vJrwpWtwJgWrhcsFMMfFFhFp",
+        "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+        "PmmdzqPrVvPwwTWBwg",
+    ]);
     assert_eq!(g.priority(), Some(18));
 }
